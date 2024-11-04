@@ -9,7 +9,7 @@ async function predictClassification(model, image) {
             .expandDims()
             .toFloat()
   
-            const prediction = model.predict(tensor);
+        const prediction = model.predict(tensor);
         const score = await prediction.data();
         const confidenceScore = Math.max(...score) * 100;
  
@@ -21,7 +21,7 @@ async function predictClassification(model, image) {
         }
         
         if(label === 'Non-cancer') {
-            suggestion = "Anda sehat!"
+            suggestion = "Penyakit kanker tidak terdeteksi."
         }
  
         return { label, suggestion };
@@ -29,4 +29,5 @@ async function predictClassification(model, image) {
         throw new InputError('Terjadi kesalahan dalam melakukan prediksi')
     }
 }
+ 
 module.exports = predictClassification;
